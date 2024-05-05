@@ -77,11 +77,6 @@
                                     <form action="{{route("create.anonymoussuggestions")}}" method="POST">
                                         @csrf
                                         <div class="mb-3">
-                                            <label for="idSugerencia" class="form-label">ID Sugerencia</label>
-                                            <input type="text" class="form-control rounded" id="idSugerencia"
-                                                name="idSugerencia">
-                                        </div>
-                                        <div class="mb-3">
                                             <label for="asunto" class="form-label">Asunto</label>
                                             <input type="text" class="form-control rounded" id="asunto"
                                                 name="asunto">
@@ -112,7 +107,6 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID Sugerencia</th>
                                             <th>Asunto</th>
                                             <th>Descripcion</th>
                                             <th>Acciones</th>
@@ -120,7 +114,6 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                        <th>ID Sugerencia</th>
                                             <th>Asunto</th>
                                             <th>Descripcion</th>
                                             <th>Acciones</th>
@@ -129,7 +122,6 @@
                                     <tbody>
                                         @foreach ($datos as $item)
                                             <tr>
-                                                <th>{{ $item->idSugerencia }}</th>
                                                 <th>{{ $item->asunto }}</th>
                                                 <th>{{ $item->descripcion }}</th>
                                                 
@@ -157,31 +149,17 @@
                                                             <div class="modal-body">
                                                                 <form action="{{ route("update.anonymoussuggestions", $item->idSugerencia) }}" method="POST">
                                                                     @csrf
-                                                                    <div class="mb-3">
-                                                                        <label for="idSugerencia" class="form-label">ID Sugerencia</label>
-                                                                        <input type="text" class="form-control rounded" id="idSugerencia"
-                                                                            name="idSugerencia">
-                                                                    </div>
+                                                                    <input type="hidden" name="idSugerencia" id="idSugerencia" value="{{ $item->idSugerencia }}">
                                                                     <div class="mb-3">
                                                                         <label for="asunto" class="form-label">Asunto</label>
-                                                                        <input type="text" class="form-control rounded" id="asunto"
-                                                                            name="asunto">
+                                                                        <input type="text" class="form-control rounded" id="asunto" name="asunto" value="{{ $item->asunto }}">
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="descripcion" class="form-label">Descripcion</label>
-                                                                        <input type="text" class="form-control rounded" id="descripcion"
-                                                                            name="descripcion">
-                                                                    </div>
-                                                                    
-                                                                    
-                                                                    <div class="modal-footer">
-                                                                        <button class="btn btn-secondary" type="button"
-                                                                            data-dismiss="modal">Cancelar</button>
-                                                                        <button class="btn btn-primary" type="submit">Guardar cambios</button>
+                                                                        <input type="text" class="form-control rounded" id="descripcion" name="descripcion" value="{{ $item->descripcion }}">
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button class="btn btn-secondary" type="button"
-                                                                            data-dismiss="modal">Cancelar</button>
+                                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                                                                         <button class="btn btn-primary" type="submit">Guardar cambios</button>
                                                                     </div>
                                                                 </form>

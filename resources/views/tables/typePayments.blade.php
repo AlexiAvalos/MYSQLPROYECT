@@ -77,11 +77,6 @@
                                     <form action="{{route("create.typePayments")}}" method="POST">
                                         @csrf
                                         <div class="mb-3">
-                                            <label for="idTipoPago" class="form-label">ID Tipo Pago</label>
-                                            <input type="text" class="form-control rounded" id="idTipoPago"
-                                                name="idTipoPago">
-                                        </div>
-                                        <div class="mb-3">
                                             <label for="nombre" class="form-label">Nombre</label>
                                             <input type="text" class="form-control rounded" id="nombre"
                                                 name="nombre">
@@ -112,7 +107,6 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID Tipo Pago</th>
                                             <th>Nombre</th>
                                             <th>Descripcion</th>
                                             <th>Acciones</th>
@@ -120,7 +114,6 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>ID Tipo Pago</th>
                                             <th>Nombre</th>
                                             <th>Descripcion</th>
                                             <th>Acciones</th>
@@ -129,7 +122,6 @@
                                     <tbody>
                                         @foreach ($datos as $item)
                                             <tr>
-                                                <th>{{ $item->idTipoPago }}</th>
                                                 <th>{{ $item->nombre }}</th>
                                                 <th>{{ $item->descripcion }}</th>
                                                 
@@ -157,31 +149,17 @@
                                                             <div class="modal-body">
                                                                 <form action="{{ route("update.typePayments", $item->idTipoPago) }}" method="POST">
                                                                     @csrf
-                                                                    <div class="mb-3">
-                                                                        <label for="idTipoPago" class="form-label">ID Tipo Pago</label>
-                                                                        <input type="text" class="form-control rounded" id="idTipoPago"
-                                                                            name="idTipoPago">
-                                                                    </div>
+                                                                    <input type="hidden" name="idTipoPago" id="idTipoPago" value="{{ $item->idTipoPago }}">
                                                                     <div class="mb-3">
                                                                         <label for="nombre" class="form-label">Nombre</label>
-                                                                        <input type="text" class="form-control rounded" id="nombre"
-                                                                            name="nombre">
+                                                                        <input type="text" class="form-control rounded" id="nombre" name="nombre" value="{{ $item->nombre }}">
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="descripcion" class="form-label">Descripcion</label>
-                                                                        <input type="text" class="form-control rounded" id="descripcion"
-                                                                            name="descripcion">
-                                                                    </div>
-                                        
-                                                                    
-                                                                    <div class="modal-footer">
-                                                                        <button class="btn btn-secondary" type="button"
-                                                                            data-dismiss="modal">Cancelar</button>
-                                                                        <button class="btn btn-primary" type="submit">Guardar cambios</button>
+                                                                        <label for="descripcion" class="form-label">Descripción</label>
+                                                                        <input type="text" class="form-control rounded" id="descripcion" name="descripcion" value="{{ $item->descripcion }}">
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button class="btn btn-secondary" type="button"
-                                                                            data-dismiss="modal">Cancelar</button>
+                                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                                                                         <button class="btn btn-primary" type="submit">Guardar cambios</button>
                                                                     </div>
                                                                 </form>

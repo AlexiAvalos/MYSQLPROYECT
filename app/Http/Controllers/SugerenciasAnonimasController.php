@@ -17,8 +17,7 @@ class SugerenciasAnonimasController extends Controller
     public function create(Request $request)
     {
         try {
-            $sql = DB::insert("INSERT INTO sugerenciasanonimas(idSugerencia, asunto, descripcion) values(?,?,?)", [
-                $request->idSugerencia,
+            $sql = DB::insert("INSERT INTO sugerenciasanonimas(asunto, descripcion) values(?,?)", [
                 $request->asunto,
                 $request->descripcion,
                 
@@ -65,13 +64,13 @@ class SugerenciasAnonimasController extends Controller
     {
 
     }
-    public function update(Request $request)
+    public function update(Request $request, $id)
     {
         try {
-            $sql = DB::update("UPDATE sugerenciasanonimas SET idSugerencia=?, asunto=?, descripcion=?", [
-                $request->idSugerencia,
+            $sql = DB::update("UPDATE sugerenciasanonimas SET asunto=?, descripcion=? where idSugerencia = ?", [
                 $request->asunto,
                 $request->descripcion,
+                $id
                 
             ]);
         } catch (\Throwable $th) {

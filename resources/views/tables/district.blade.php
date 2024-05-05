@@ -132,7 +132,10 @@
                                 <div class="modal-body">
                                     <form action="{{ route("update.district", $item->idDistrito) }}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="idMunicipio" id="idMunicipio" value="{{ $item->idMunicipio }}">
+                                        <input type="hidden" name="idDistrito" id="idDistrito" value="{{ $item->idDistrito }}">
+                                        <div class="mb-3">
+                                            <label for="idMunicipio" class="form-label">ID Municipio</label>
+                                            <input type="text" class="form-control rounded" id="idMunicipio" name="idMunicipio" value="{{ $item->idMunicipio }}">
                                         <div class="mb-3">
                                             <label for="distrito" class="form-label">Distrito</label>
                                             <input type="text" class="form-control rounded" id="distrito" name="distrito" value="{{ $item->distrito }}">

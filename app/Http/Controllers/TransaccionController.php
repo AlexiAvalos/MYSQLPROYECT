@@ -17,8 +17,7 @@ class TransaccionController extends Controller
     public function create(Request $request)
     {
         try {
-            $sql = DB::insert("INSERT INTO transacciones(idPrestamo, idCliente, fechaPrestamo, fechaVencimiento, creditoPrestado, creditoRecaudado, intereses, estado) values(?,?,?,?,?,?,?,?)", [
-                $request->idTransaccion,
+            $sql = DB::insert("INSERT INTO transacciones(idCuentaEmisor, idCuentaDestino, idTipoTransaccion, fechaTransaccion, descripcion, monto) values(?,?,?,?,?,?)", [
                 $request->idCuentaEmisor,
                 $request->idCuentaDestino,
                 $request->idTipoTransaccion,
@@ -71,14 +70,14 @@ class TransaccionController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $sql = DB::update("UPDATE transacciones SET idPrestamo=?, idCliente=?, fechaPrestamo=?, fechaVencimiento=?, creditoPrestado=?, creditoRecaudado=?, intereses=?, estado=?", [
-                $request->idTransaccion,
+            $sql = DB::update("UPDATE transacciones SET idCuentaEmisor=?, idCuentaDestino=?, idTipoTransaccion=?, fechaTransaccion=?, descripcion=?, monto=? where idTransaccion = ?", [
                 $request->idCuentaEmisor,
                 $request->idCuentaDestino,
                 $request->idTipoTransaccion,
                 $request->fechaTransaccion,
                 $request->descripcion,
                 $request->monto,
+                $id
             ]);
         } catch (\Throwable $th) {
             $sql = 0;

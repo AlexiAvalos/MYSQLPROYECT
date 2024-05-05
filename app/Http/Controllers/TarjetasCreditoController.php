@@ -17,8 +17,7 @@ class TarjetasCreditoController extends Controller
     public function create(Request $request)
     {
         try {
-            $sql = DB::insert("INSERT INTO tarjetascredito(idCredito, idCliente, idCicloFacturacion, numeroTarjeta, limiteCredito, saldoActual, fechaEmision, fechaVencimiento) values(?,?,?,?,?,?,?,?)", [
-                $request->idCredito,
+            $sql = DB::insert("INSERT INTO tarjetascredito(idCliente, idCicloFacturacion, numeroTarjeta, limiteCredito, saldoActual, fechaEmision, fechaVencimiento) values(?,?,?,?,?,?,?)", [
                 $request->idCliente,
                 $request->idCicloFacturacion,
                 $request->numeroTarjeta,
@@ -72,8 +71,7 @@ class TarjetasCreditoController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $sql = DB::update("UPDATE tarjetascredito SET idCredito=?, idCliente=?, idCicloFacturacion=?, numeroTarjeta=?, limiteCredito=?, saldoActual=?, fechaEmision=?, fechaVencimiento=?", [
-                $request->idCredito,
+            $sql = DB::update("UPDATE tarjetascredito SET idCliente=?, idCicloFacturacion=?, numeroTarjeta=?, limiteCredito=?, saldoActual=?, fechaEmision=?, fechaVencimiento=? where idCredito = ?", [
                 $request->idCliente,
                 $request->idCicloFacturacion,
                 $request->numeroTarjeta,
@@ -81,6 +79,7 @@ class TarjetasCreditoController extends Controller
                 $request->saldoActual,
                 $request->fechaEmision,
                 $request->fechaVencimiento,
+                $id
             ]);
         } catch (\Throwable $th) {
             $sql = 0;

@@ -17,9 +17,9 @@ class PagosController extends Controller
     public function create(Request $request)
     {
         try {
-            $sql = DB::insert("INSERT INTO pagos(idPago, idCuenta, montoPago, fechaPago, descripcion, estadoPago) values(?,?,?,?,?,?)", [
-                $request->idPago,
+            $sql = DB::insert("INSERT INTO pagos(idCuenta, idTipoPago, montoPago, fechaPago, descripcion, estadoPago) values(?,?,?,?,?,?)", [
                 $request->idCuenta,
+                $request->idTipoPago,
                 $request->montoPago,
                 $request->fechaPago,
                 $request->descripcion,
@@ -70,8 +70,9 @@ class PagosController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $sql = DB::update("UPDATE pagos SET idCuenta=?, montoPago=?, fechaPago=?, descripcion=?, estadoPago=? WHERE idPago=?", [
+            $sql = DB::update("UPDATE pagos SET idCuenta=?, idTipoPago=?, montoPago=?, fechaPago=?, descripcion=?, estadoPago=? WHERE idPago=?", [
                 $request->idCuenta,
+                $request->idTipoPago,
                 $request->montoPago,
                 $request->fechaPago,
                 $request->descripcion,

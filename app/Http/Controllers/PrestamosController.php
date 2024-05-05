@@ -17,8 +17,7 @@ class PrestamosController extends Controller
     public function create(Request $request)
     {
         try {
-            $sql = DB::insert("INSERT INTO prestamos(idPrestamo, idCliente, fechaPrestamo, fechaVencimiento, creditoPrestado, creditoRecaudado, intereses, estado) values(?,?,?,?,?,?,?,?)", [
-                $request->idPrestamo,
+            $sql = DB::insert("INSERT INTO prestamos(idCliente, fechaPrestamo, fechaVencimiento, creditoPrestado, creditoRecaudado, intereses, estado) values(?,?,?,?,?,?,?)", [
                 $request->idCliente,
                 $request->fechaPrestamo,
                 $request->fechaVencimiento,
@@ -72,8 +71,7 @@ class PrestamosController extends Controller
     public function update(Request $request, $id)
     {
         try {
-            $sql = DB::update("UPDATE prestamos SET idPrestamo=?, idCliente=?, fechaPrestamo=?, fechaVencimiento=?, creditoPrestado=?, creditoRecaudado=?, intereses=?, estado=?", [
-                $request->idPrestamo,
+            $sql = DB::update("UPDATE prestamos SET idCliente=?, fechaPrestamo=?, fechaVencimiento=?, creditoPrestado=?, creditoRecaudado=?, intereses=?, estado=? where idPrestamo = ?", [
                 $request->idCliente,
                 $request->fechaPrestamo,
                 $request->fechaVencimiento,
@@ -81,6 +79,7 @@ class PrestamosController extends Controller
                 $request->creditoRecaudado,
                 $request->intereses,
                 $request->estado,
+                $id
             ]);
         } catch (\Throwable $th) {
             $sql = 0;

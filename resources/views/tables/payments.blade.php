@@ -77,11 +77,6 @@
                                     <form action="{{route("create.payments")}}" method="POST">
                                         @csrf
                                         <div class="mb-3">
-                                            <label for="idPagos" class="form-label">ID Pagos</label>
-                                            <input type="text" class="form-control rounded" id="idPagos"
-                                                name="idPagos">
-                                        </div>
-                                        <div class="mb-3">
                                             <label for="idCuenta" class="form-label">ID Cuenta</label>
                                             <input type="text" class="form-control rounded" id="idCuenta"
                                                 name="idCuenta">
@@ -108,8 +103,11 @@
                                         </div>
                                         <div class="mb-3">
                                             <label for="estadoPago" class="form-label">Estado Pago</label>
-                                            <input type="text" class="form-control rounded" id="estadoPago"
+                                            <select class="form-select form-control rounded" id="estadoPago"
                                                 name="estadoPago">
+                                                <option value="1">Pendiente</option>
+                                                <option value="0">Cancelado</option>
+                                            </select>
                                         </div>
                                         <div class="modal-footer">
                                             <button class="btn btn-secondary" type="button"
@@ -130,7 +128,6 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID Pagos</th>
                                             <th>ID Cuenta</th>
                                             <th>ID Tipo Pago</th>
                                             <th>Monto Pago</th>
@@ -141,7 +138,6 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>ID Pagos</th>
                                             <th>ID Cuenta</th>
                                             <th>ID Tipo Pago</th>
                                             <th>Monto Pago</th>
@@ -154,13 +150,18 @@
                                     <tbody>
                                         @foreach ($datos as $item)
                                             <tr>
-                                                <th>{{ $item->idPago }}</th>
                                                 <th>{{ $item->idCuenta }}</th>
                                                 <th>{{ $item->idTipoPago }}</th>
                                                 <th>{{ $item->montoPago }}</th>
                                                 <th>{{ $item->fechaPago }}</th>
                                                 <th>{{ $item->descripcion }}</th>
-                                                <th>{{ $item->estadoPago }}</th>
+                                                <th>
+                                                    @if ($item->estadoPago == 1)
+                                                        Pendiente
+                                                    @else
+                                                        Cancelado
+                                                    @endif
+                                                </th>
                                                
                                                 <td>
                                                     <a href="" class="btn btn-warning btn-sm" data-toggle="modal"
@@ -185,45 +186,37 @@
                                                             <div class="modal-body">
                                                                 <form action="{{ route("update.payments", $item->idPago) }}" method="POST">
                                                                     @csrf
-                                                                    <input type="hidden" name="idPago" id="id" value="{{ $item->idPago}}">
-                                                                    <div class="mb-3">
-                                                                        <label for="idPagos" class="form-label">ID Pagos</label>
-                                                                        <input type="text" class="form-control rounded" id="idPagos"
-                                                                            name="idPagos">
+                                                                    <input type="hidden" name="idPago" id="idPago" value="{{ $item->idPago}}">
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="idCuenta" class="form-label">ID Cuenta</label>
-                                                                        <input type="text" class="form-control rounded" id="idCuenta"
-                                                                            name="idCuenta">
+                                                                        <input type="text" class="form-control rounded" id="idCuenta" name="idCuenta" value="{{ $item->idCuenta }}">
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="idTipoPago" class="form-label">ID Tipo Pago</label>
-                                                                        <input type="text" class="form-control rounded" id="idTipoPago"
-                                                                            name="idTipoPago">
+                                                                        <input type="text" class="form-control rounded" id="idTipoPago" name="idTipoPago" value="{{ $item->idTipoPago }}">
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="montoPago" class="form-label">Monto Pago</label>
-                                                                        <input type="text" class="form-control rounded" id="montoPago"
-                                                                            name="montoPago">
+                                                                        <input type="text" class="form-control rounded" id="montoPago" name="montoPago" value="{{ $item->montoPago }}">
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="fechaPago" class="form-label">Fecha Pago</label>
-                                                                        <input type="text" class="form-control rounded" id="fechaPago"
-                                                                            name="fechaPago">
+                                                                        <input type="text" class="form-control rounded" id="fechaPago" name="fechaPago" value="{{ $item->fechaPago }}">
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="descripcion" class="form-label">Descripcion</label>
-                                                                        <input type="text" class="form-control rounded" id="descripcion"
-                                                                            name="descripcion">
+                                                                        <label for="descripcion" class="form-label">Descripción</label>
+                                                                        <input type="text" class="form-control rounded" id="descripcion" name="descripcion" value="{{ $item->descripcion }}">
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="estadoPago" class="form-label">Estado Pago</label>
-                                                                        <input type="text" class="form-control rounded" id="estadoPago"
-                                                                            name="estadoPago">
+                                                                        <select class="form-select form-control rounded" id="estadoPago" name="estadoPago">
+                                                                            <option value="1" {{ $item->estadoPago == 1 ? 'selected' : '' }}>Pendiente</option>
+                                                                            <option value="0" {{ $item->estadoPago == 0 ? 'selected' : '' }}>Cancelado</option>
+                                                                        </select>
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button class="btn btn-secondary" type="button"
-                                                                            data-dismiss="modal">Cancelar</button>
+                                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                                                                         <button class="btn btn-primary" type="submit">Guardar cambios</button>
                                                                     </div>
                                                                 </form>

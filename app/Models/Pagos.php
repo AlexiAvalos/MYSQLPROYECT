@@ -9,6 +9,7 @@ class Pagos extends Model
 {
     protected $fillable = [
         'idCuenta',
+        'idTipoPago',
         'montoPago',
         'fechaPago',
         'descripcion',

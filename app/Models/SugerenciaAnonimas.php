@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class SugerenciaAnonimas extends Model
 {
     protected $fillable = [
-        'idSugerencia',
         'asunto',
         'descripcion',
 

@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tarjetascredito', function (Blueprint $table) {
-            $table->increments('idCredito');
             $table->integer('idCliente');
             $table->integer('idCicloFacturacion');
             $table->int('numeroTarjeta');

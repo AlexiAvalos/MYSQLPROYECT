@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class TarjetasCredito extends Model
 {
     protected $fillable = [
-        'idCredito',
         'idCliente',
         'idCicloFacturacion',
         'numeroTarjeta',

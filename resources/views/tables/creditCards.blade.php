@@ -77,11 +77,6 @@
                                     <form action="{{route("create.creditCards")}}" method="POST">
                                         @csrf
                                         <div class="mb-3">
-                                            <label for="idCredito" class="form-label">ID Credito</label>
-                                            <input type="text" class="form-control rounded" id="idCredito"
-                                                name="idCredito">
-                                        </div>
-                                        <div class="mb-3">
                                             <label for="idCliente" class="form-label">ID Cliente</label>
                                             <input type="text" class="form-control rounded" id="idCliente"
                                                 name="idCliente">
@@ -138,7 +133,6 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID Credito</th>
                                             <th>ID Cliente</th>
                                             <th>Id Ciclo Facturacion</th>
                                             <th>Numero Tarjeta</th>
@@ -150,7 +144,6 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>ID Credito</th>
                                             <th>ID Cliente</th>
                                             <th>Id Ciclo Facturacion</th>
                                             <th>Numero Tarjeta</th>
@@ -164,7 +157,6 @@
                                     <tbody>
                                         @foreach ($datos as $item)
                                             <tr>
-                                                <th>{{ $item->idCredito }}</th>
                                                 <th>{{ $item->idCliente }}</th>
                                                 <th>{{ $item->idCicloFacturacion }}</th>
                                                 <th>{{ $item->numeroTarjeta }}</th>
@@ -196,45 +188,37 @@
                                                             <div class="modal-body">
                                                                 <form action="{{ route("update.creditCards", $item->idCredito) }}" method="POST">
                                                                     @csrf
-                                                                    <div class="mb-3">
-                                                                        <label for="idCredito" class="form-label">ID Credito</label>
-                                                                        <input type="text" class="form-control rounded" id="idCredito"
-                                                                            name="idCredito">
-                                                                    </div>
+                                                                    <input type="hidden" name="idCredito" id="idCredito" value="{{ $item->idCredito }}">
                                                                     <div class="mb-3">
                                                                         <label for="idCliente" class="form-label">ID Cliente</label>
-                                                                        <input type="text" class="form-control rounded" id="idCliente"
-                                                                            name="idCliente">
+                                                                        <input type="text" class="form-control rounded" id="idCliente" name="idCliente" value="{{ $item->idCicloFacturacion }}">
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="idCicloFacturacion" class="form-label">Id Ciclo Facturacion</label>
-                                                                        <input type="text" class="form-control rounded" id="idCicloFacturacion"
-                                                                            name="idCicloFacturacion">
+                                                                        <label for="idCicloFacturacion" class="form-label">ID Ciclo Facturación</label>
+                                                                        <input type="text" class="form-control rounded" id="idCicloFacturacion" name="idCicloFacturacion" value="{{ $item->idCicloFacturacion }}">
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="numeroTarjeta" class="form-label">Numero Tarjeta</label>
-                                                                        <input type="text" class="form-control rounded" id="numeroTarjeta"
-                                                                            name="numeroTarjeta">
+                                                                        <label for="numeroTarjeta" class="form-label">Número de Tarjeta</label>
+                                                                        <input type="text" class="form-control rounded" id="numeroTarjeta" name="numeroTarjeta" value="{{ $item->numeroTarjeta }}">
+                                                                    </div>
+                                                                    <div class="mb-3">
+                                                                        <label for="limiteCredito" class="form-label">Límite de Crédito</label>
+                                                                        <input type="text" class="form-control rounded" id="limiteCredito" name="limiteCredito" value="{{ $item->limiteCredito }}">
                                                                     </div>
                                                                     <div class="mb-3">
                                                                         <label for="saldoActual" class="form-label">Saldo Actual</label>
-                                                                        <input type="text" class="form-control rounded" id="saldoActual"
-                                                                            name="saldoActual">
+                                                                        <input type="text" class="form-control rounded" id="saldoActual" name="saldoActual" value="{{ $item->saldoActual }}">
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="fechaEmision" class="form-label">Fecha Emision</label>
-                                                                        <input type="text" class="form-control rounded" id="fechaEmision"
-                                                                            name="fechaEmision">
+                                                                        <label for="fechaEmision" class="form-label">Fecha de Emisión</label>
+                                                                        <input type="text" class="form-control rounded" id="fechaEmision" name="fechaEmision" value="{{ $item->fechaEmision }}">
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="fechaVencimiento" class="form-label">Fecha Vencimiento</label>
-                                                                        <input type="text" class="form-control rounded" id="fechaVencimiento"
-                                                                            name="fechaVencimiento">
-                                                                    </div>
+                                                                        <label for="fechaVencimiento" class="form-label">Fecha de Vencimiento</label>
+                                                                        <input type="text" class="form-control rounded" id="fechaVencimiento" name="fechaVencimiento" value="{{ $item->fechaVencimiento }}">
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button class="btn btn-secondary" type="button"
-                                                                            data-dismiss="modal">Cancelar</button>
+                                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                                                                         <button class="btn btn-primary" type="submit">Guardar cambios</button>
                                                                     </div>
                                                                 </form>

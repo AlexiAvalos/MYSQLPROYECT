@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Transaccion extends Model
 {
     protected $fillable = [
-        'idTransaccion',
         'idCuentaEmisor',
         'idCuentaDestino',
         'idTipoTransaccion',

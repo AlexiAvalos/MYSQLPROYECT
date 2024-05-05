@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('transacciones', function (Blueprint $table) {
-            $table->increments('idTransaccion');
             $table->integer('idCuentaEmisor');
             $table->string('idCuentaDestino');
             $table->date('idTipoTransaccion');

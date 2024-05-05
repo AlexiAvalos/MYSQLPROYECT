@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('prestamos', function (Blueprint $table) {
-            $table->increments('idPrestamo');
             $table->integer('idCliente');
             $table->string('fechaPrestamo');
             $table->date('fechaVencimiento');

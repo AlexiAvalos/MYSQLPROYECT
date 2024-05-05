@@ -77,37 +77,32 @@
                                     <form action="{{route("create.Transactions")}}" method="POST">
                                         @csrf
                                         <div class="mb-3">
-                                            <label for="idTransaccion" class="form-label">ID Transaccion</label>
-                                            <input type="text" class="form-control rounded" id="idTransaccion"
-                                                name="idTransaccion">
-                                        </div>
-                                        <div class="mb-3">
                                             <label for="idCuentaEmisor" class="form-label">ID Cuenta Emisor</label>
                                             <input type="text" class="form-control rounded" id="idCuentaEmisor"
                                                 name="idCuentaEmisor">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="idCuentaDestino" class="form-label">id CuentaDestino/label>
+                                            <label for="idCuentaDestino" class="form-label">ID CuentaDestino</label>
                                             <input type="text" class="form-control rounded" id="idCuentaDestino"
                                                 name="idCuentaDestino">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="idTipoTransaccion" class="form-label">id TipoTransaccion</label>
+                                            <label for="idTipoTransaccion" class="form-label">ID TipoTransaccion</label>
                                             <input type="text" class="form-control rounded" id="idTipoTransaccion"
                                                 name="idTipoTransaccion">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="fechaTransaccion" class="form-label">fecha Transaccion</label>
+                                            <label for="fechaTransaccion" class="form-label">Fecha Transaccion</label>
                                             <input type="text" class="form-control rounded" id="fechaTransaccion"
                                                 name="fechaTransaccion">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="descripcion" class="form-label">descripcion</label>
+                                            <label for="descripcion" class="form-label">Descripcion</label>
                                             <input type="text" class="form-control rounded" id="descripcion"
                                                 name="descripcion">
                                         </div>
                                         <div class="mb-3">
-                                            <label for="monto" class="form-label">monto</label>
+                                            <label for="monto" class="form-label">Monto</label>
                                             <input type="text" class="form-control rounded" id="monto"
                                                 name="monto">
                                         </div>
@@ -134,7 +129,6 @@
                                     <thead>
                                         <tr>
                                         <tr>
-                                            <th>ID Transaccion</th>
                                             <th>ID Cuenta Emisor</th>
                                             <th>ID Cuenta Destino</th>
                                             <th>ID Tipo Transaccion</th>
@@ -148,7 +142,6 @@
                                     <tfoot>
                                         <tr>
                                         <tr>
-                                            <th>ID Transaccion</th>
                                             <th>ID Cuenta Emisor</th>
                                             <th>ID Cuenta Destino</th>
                                             <th>ID Tipo Transaccion</th>
@@ -161,7 +154,6 @@
                                     <tbody>
                                         @foreach ($datos as $item)
                                             <tr>
-                                            <th>{{ $item->idTransaccion }}</th>
                                             <th>{{ $item->idCuentaEmisor }}</th>
                                             <th>{{ $item->idCuentaDestino }}</th>
                                             <th>{{ $item->idTipoTransaccion }}</th>
@@ -192,45 +184,33 @@
                                                             <div class="modal-body">
                                                                 <form action="{{ route("update.Transactions", $item->idTransaccion) }}" method="POST">
                                                                     @csrf
-                                                                    <div class="mb-3">
-                                                                        <label for="idTransaccion" class="form-label">ID Transaccion</label>
-                                                                        <input type="text" class="form-control rounded" id="idTransaccion"
-                                                                            name="idTransaccion">
-                                                                    </div>
+                                                                    <input type="hidden" name="idTransaccion" id="idTransaccion" value="{{ $item->idTransaccion }}">
                                                                     <div class="mb-3">
                                                                         <label for="idCuentaEmisor" class="form-label">ID Cuenta Emisor</label>
-                                                                        <input type="text" class="form-control rounded" id="idCuentaEmisor"
-                                                                            name="idCuentaEmisor">
+                                                                        <input type="text" class="form-control rounded" id="idCuentaEmisor" name="idCuentaEmisor" value="{{ $item->idCuentaEmisor }}">
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="idCuentaDestino" class="form-label">id CuentaDestino/label>
-                                                                        <input type="text" class="form-control rounded" id="idCuentaDestino"
-                                                                            name="idCuentaDestino">
+                                                                        <label for="idCuentaDestino" class="form-label">ID Cuenta Destino</label>
+                                                                        <input type="text" class="form-control rounded" id="idCuentaDestino" name="idCuentaDestino" value="{{ $item->idCuentaDestino }}">
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="idTipoTransaccion" class="form-label">id TipoTransaccion</label>
-                                                                        <input type="text" class="form-control rounded" id="idTipoTransaccion"
-                                                                            name="idTipoTransaccion">
+                                                                        <label for="idTipoTransaccion" class="form-label">ID Tipo Transaccion</label>
+                                                                        <input type="text" class="form-control rounded" id="idTipoTransaccion" name="idTipoTransaccion" value="{{ $item->idTipoTransaccion }}">
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="fechaTransaccion" class="form-label">fecha Transaccion</label>
-                                                                        <input type="text" class="form-control rounded" id="fechaTransaccion"
-                                                                            name="fechaTransaccion">
+                                                                        <label for="fechaTransaccion" class="form-label">Fecha Transaccion</label>
+                                                                        <input type="text" class="form-control rounded" id="fechaTransaccion" name="fechaTransaccion" value="{{ $item->fechaTransaccion }}">
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="descripcion" class="form-label">descripcion</label>
-                                                                        <input type="text" class="form-control rounded" id="descripcion"
-                                                                            name="descripcion">
+                                                                        <label for="descripcion" class="form-label">Descripcion</label>
+                                                                        <input type="text" class="form-control rounded" id="descripcion" name="descripcion" value="{{ $item->descripcion }}">
                                                                     </div>
                                                                     <div class="mb-3">
-                                                                        <label for="monto" class="form-label">monto</label>
-                                                                        <input type="text" class="form-control rounded" id="monto"
-                                                                            name="monto">
-                                                                    </div>
+                                                                        <label for="monto" class="form-label">Monto</label>
+                                                                        <input type="text" class="form-control rounded" id="monto" name="monto" value="{{ $item->monto }}">
                                                                     </div>
                                                                     <div class="modal-footer">
-                                                                        <button class="btn btn-secondary" type="button"
-                                                                            data-dismiss="modal">Cancelar</button>
+                                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                                                                         <button class="btn btn-primary" type="submit">Guardar cambios</button>
                                                                     </div>
                                                                 </form>

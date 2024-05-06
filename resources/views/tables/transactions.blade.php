@@ -156,18 +156,20 @@
                                             <tr>
                                             <th>{{ $item->cuentaEmisor }}</th>
                                             <th>{{ $item->cuentaDestino }}</th>
-                                            <th>{{ $item->tipoTransaccion }}</th>
+                                            <th>{{ $item->tipoTransaccion  }}</th>
                                             <th>{{ $item->fechaTransaccion }}</th>
                                             <th>{{ $item->descripcion }}</th>
                                             <th>{{ $item->monto }}</th>
                                                
-                                                <td>
-                                                    <a href="" class="btn btn-warning btn-sm" data-toggle="modal"
-                                                        data-target="#editarModal{{$item->idTransaccion}}"><i
-                                                            class="fa-regular fa-pen-to-square"></i></a>
-                                                    <a href="{{route("delete.Transactions", $item->idTransaccion)}}" onclick="return res()" class="btn btn-danger btn-sm"><i
-                                                            class="fa-regular fa-trash-can"></i></a>
-                                                </td>
+                                            <td>
+                                                <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarModal{{$item->idTransaccion}}">
+                                                    <i class="fa-regular fa-pen-to-square"></i>
+                                                </a>
+                                                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminarModal{{$item->idTransaccion}}">
+                                                    <i class="fa-regular fa-trash-can"></i>
+                                                </a>
+
+                                            </td>
 
                                                 <div class="modal fade" id="editarModal{{$item->idTransaccion}}" tabindex="-1" role="dialog"
                                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -219,8 +221,30 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="modal fade" id="eliminarModal{{$item->idTransaccion}}" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Confirmar Eliminación</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ¿Estás seguro de que quieres eliminar esta transacción?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                            <a href="{{route("delete.Transactions", $item->idTransaccion)}}" class="btn btn-danger">Eliminar</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+</div>
+
                                             </tr>
                                         @endforeach
+                                        
                                     </tbody>
                                 </table>
                             </div>

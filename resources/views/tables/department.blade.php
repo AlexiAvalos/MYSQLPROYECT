@@ -59,91 +59,115 @@
                     @endif
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Department</h1>
-<button class="btn btn-success mb-2" data-toggle="modal" data-target="#agregarModal">Agregar</button>
+                    <button class="btn btn-success mb-2" data-toggle="modal" data-target="#agregarModal">Agregar</button>
 
-<div class="modal fade" id="agregarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Agregar Departamento</h5>
-                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form action="{{ route("create.department") }}" method="POST">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="departamento" class="form-label">Departamento</label>
-                        <input type="text" class="form-control rounded" id="departamento" name="departamento">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <button class="btn btn-primary" type="submit">Guardar</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-
-<!-- DataTales Example -->
-<div class="card shadow">
-    <div class="card-body">
-        <div class="table-responsive">
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
-                    <tr>
-                        <th>Departamento</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                <tfoot>
-                    <tr>
-                        <th>Departamento</th>
-                        <th>Acciones</th>
-                    </tr>
-                </tfoot>
-                <tbody>
-                    @foreach ($datos as $item)
-                    <tr>
-                        <th>{{ $item->departamento }}</th>
-                        <td>
-                            <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarModal{{ $item->idDepartamento }}"><i class="fa-regular fa-pen-to-square"></i></a>
-                            <a href="{{ route("delete.department", $item->idDepartamento) }}" onclick="return res()" class="btn btn-danger btn-sm"><i class="fa-regular fa-trash-can"></i></a>
-                        </td>
-                    </tr>
-                    <div class="modal fade" id="editarModal{{ $item->idDepartamento }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="agregarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Editar Departamento</h5>
+                                    <h5 class="modal-title" id="exampleModalLabel">Agregar Departamento</h5>
                                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                         <span aria-hidden="true">×</span>
                                     </button>
                                 </div>
                                 <div class="modal-body">
-                                    <form action="{{ route("update.department", $item->idDepartamento) }}" method="POST">
+                                    <form action="{{ route("create.department") }}" method="POST">
                                         @csrf
-                                        <input type="hidden" name="idDepartamento" id="idDepartamento" value="{{ $item->idDepartamento }}">
                                         <div class="mb-3">
                                             <label for="departamento" class="form-label">Departamento</label>
-                                            <input type="text" class="form-control rounded" id="departamento" name="departamento" value="{{ $item->departamento }}">
+                                            <input type="text" class="form-control rounded" id="departamento" name="departamento">
                                         </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                                            <button class="btn btn-primary" type="submit">Guardar cambios</button>
-                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                        <button class="btn btn-primary" type="submit">Guardar</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+
+                    <!-- DataTales Example -->
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Departamento</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <th>Departamento</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        @foreach ($datos as $item)
+                                        <tr>
+                                            <th>{{ $item->departamento }}</th>
+                                            <td>
+                                                <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarModal{{ $item->idDepartamento }}"><i class="fa-regular fa-pen-to-square"></i></a>
+                                                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminarModal{{$item->idDepartamento}}">
+                                                <i class="fa-regular fa-trash-can"></i></a>
+                                            </td>
+                                            
+                                                
+
+                                                <div class="modal fade" id="eliminarModal{{$item->idDepartamento}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Confirmar Eliminación</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ¿Estás seguro de que quieres eliminar este departamento?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                            <a href="{{route("delete.department", $item->idDepartamento)}}" class="btn btn-danger">Eliminar</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal fade" id="editarModal{{ $item->idDepartamento }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabel">Editar Departamento</h5>
+                                                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                    <span aria-hidden="true">×</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <form action="{{ route("update.department", $item->idDepartamento) }}" method="POST">
+                                                                    @csrf
+                                                                    <input type="hidden" name="idDepartamento" id="idDepartamento" value="{{ $item->idDepartamento }}">
+                                                                    <div class="mb-3">
+                                                                        <label for="departamento" class="form-label">Departamento</label>
+                                                                        <input type="text" class="form-control rounded" id="departamento" name="departamento" value="{{ $item->departamento }}">
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                                        <button class="btn btn-primary" type="submit">Guardar cambios</button>
+                                                                    </div>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                </div>
+
+                                        </tr>    
+                                      @endforeach
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
 
 
                 </div>

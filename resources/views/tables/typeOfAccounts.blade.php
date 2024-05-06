@@ -124,67 +124,84 @@
                                     </tfoot>
                                     <tbody>
                                         @foreach ($datos as $item)
-                                            <tr>
-                                                <th>{{ $item->TipoCuenta }}</th>
-                                                <th>{{ $item->Descripcion }}</th>
-                                                <th>
-                                                    @if ($item->Estado == 1)
-                                                        Activo
-                                                    @else
-                                                        Desactivado
-                                                    @endif
-                                                </th>
-                                                <td>
-                                                    <a href="" class="btn btn-warning btn-sm" data-toggle="modal"
-                                                        data-target="#editarModal{{$item->idTipoCuenta}}"><i
-                                                            class="fa-regular fa-pen-to-square"></i></a>
-                                                    <a href="{{route("delete.typeAccount", $item->idTipoCuenta)}}" onclick="return res()" class="btn btn-danger btn-sm"><i
-                                                            class="fa-regular fa-trash-can"></i></a>
-                                                </td>
-
-                                                <div class="modal fade" id="editarModal{{$item->idTipoCuenta}}" tabindex="-1" role="dialog"
-                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Editar
-                                                                    tipo de cuenta</h5>
-                                                                <button class="close" type="button"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">×</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form action="{{ route("update.typeAccount", $item->idTipoCuenta) }}" method="POST">
-                                                                    @csrf
-                                                                    <input type="hidden" name="idTipoCuenta" id="id" value="{{ $item->idTipoCuenta}}">
-                                                                    <div class="mb-3">
-                                                                        <label for="tipoCuenta" class="form-label">Tipo de cuenta</label>
-                                                                        <input type="text" class="form-control rounded" id="tipoCuenta" name="tipoCuenta" value="{{$item->TipoCuenta}}">
-                                                                    </div>
-                                                                    <div class="mb-3">
-                                                                        <label for="descripcion" class="form-label">Descripción</label>
-                                                                        <input type="text" class="form-control rounded" id="descripcion" name="descripcion" value="{{$item->Descripcion}}">
-                                                                    </div>
-                                                                    <div class="mb-3">
-                                                                        <label for="estado" class="form-label">Estado</label>
-                                                                        <select class="form-select form-control rounded" id="estado" name="estado">
-                                                                            <option value="1" {{ $item->Estado == 1 ? 'selected' : '' }}>Activo</option>
-                                                                            <option value="0" {{ $item->Estado == 0 ? 'selected' : '' }}>Desactivado</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                                                                        <button class="btn btn-primary" type="submit">Guardar cambios</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </tr>
+                                        <tr>
+                                            <th>{{ $item->TipoCuenta }}</th>
+                                            <th>{{ $item->Descripcion }}</th>
+                                            <th>
+                                                @if ($item->Estado == 1)
+                                                    Activo
+                                                @else
+                                                    Desactivado
+                                                @endif
+                                            </th>
+                                            <td>
+                                                <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarModal{{$item->idTipoCuenta}}"><i class="fa-regular fa-pen-to-square"></i></a>
+                                                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminarModal{{$item->idTipoCuenta}}"><i class="fa-regular fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
                                         @endforeach
+                                    </tbody>
+
+                                    @foreach ($datos as $item)
+                                    <div class="modal fade" id="editarModal{{$item->idTipoCuenta}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Editar tipo de cuenta</h5>
+                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route("update.typeAccount", $item->idTipoCuenta) }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="idTipoCuenta" id="id" value="{{ $item->idTipoCuenta}}">
+                                                        <div class="mb-3">
+                                                            <label for="tipoCuenta" class="form-label">Tipo de cuenta</label>
+                                                            <input type="text" class="form-control rounded" id="tipoCuenta" name="tipoCuenta" value="{{$item->TipoCuenta}}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="descripcion" class="form-label">Descripción</label>
+                                                            <input type="text" class="form-control rounded" id="descripcion" name="descripcion" value="{{$item->Descripcion}}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="estado" class="form-label">Estado</label>
+                                                            <select class="form-select form-control rounded" id="estado" name="estado">
+                                                                <option value="1" {{ $item->Estado == 1 ? 'selected' : '' }}>Activo</option>
+                                                                <option value="0" {{ $item->Estado == 0 ? 'selected' : '' }}>Desactivado</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                            <button class="btn btn-primary" type="submit">Guardar cambios</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" id="eliminarModal{{$item->idTipoCuenta}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Confirmar Eliminación</h5>
+                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Estás seguro de que quieres eliminar este tipo de cuenta?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                    <a href="{{route("delete.typeAccount", $item->idTipoCuenta)}}" class="btn btn-danger">Eliminar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+
                                     </tbody>
                                 </table>
                             </div>

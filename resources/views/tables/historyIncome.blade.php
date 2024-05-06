@@ -131,8 +131,8 @@
                         <th>{{ $item->fechaHoraSalida }}</th>
                         <th>{{ $item->dispositivo }}</th>
                         <td>
-                            <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarModal{{ $item->idIngreso }}"><i class="fa-regular fa-pen-to-square"></i></a>
-                            <a href="{{ route("delete.historyIncome", $item->idIngreso) }}" onclick="return res()" class="btn btn-danger btn-sm"><i class="fa-regular fa-trash-can"></i></a>
+                            <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarModal{{ $item->idIngreso }}"><i class="fa-regular fa-pen-to-square"></i></a>
+                            <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminarModal{{$item->idIngreso}}"><i class="fa-regular fa-trash-can"></i></a>
                         </td>
                     </tr>
                     <div class="modal fade" id="editarModal{{ $item->idIngreso }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -147,7 +147,7 @@
                                 <div class="modal-body">
                                     <form action="{{ route("update.historyIncome", $item->idIngreso) }}" method="POST">
                                         @csrf
-                                        <<input type="hidden" name="idIngreso" id="idIngreso" value="{{ $item->idIngreso }}">
+                                        <input type="hidden" name="idIngreso" id="idIngreso" value="{{ $item->idIngreso }}">
                                         <div class="mb-3">
                                             <label for="idCuenta" class="form-label">ID Cuenta</label>
                                             <input type="text" class="form-control rounded" id="idCuenta" name="idCuenta" value="{{ $item->idCuenta }}" readonly>
@@ -169,12 +169,32 @@
                                             <button class="btn btn-primary" type="submit">Guardar cambios</button>
                                         </div>
                                     </form>
-                              
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade" id="eliminarModal{{$item->idIngreso}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Confirmar Eliminación</h5>
+                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">×</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    ¿Estás seguro de que quieres eliminar este historial de ingreso?
+                                </div>
+                                <div class="modal-footer">
+                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                    <a href="{{route("delete.historyIncome", $item->idIngreso)}}" class="btn btn-danger">Eliminar</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                     @endforeach
                 </tbody>
+
             </table>
         </div>
     </div>

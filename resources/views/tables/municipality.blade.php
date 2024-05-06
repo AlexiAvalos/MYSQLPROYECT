@@ -105,13 +105,13 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID Departamento</th>
+                                            <th>Departamento</th>
                                             <th>municipio</th>
                                             <th>Acciones</th>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>ID Departamento</th>
+                                            <th>Departamento</th>
                                             <th>municipio</th>
                                             <th>Acciones</th>
                                         </tr>
@@ -119,7 +119,7 @@
                                     <tbody>
                                         @foreach ($datos as $item)
                                             <tr>
-                                                <th>{{ $item->idDepartamento }}</th>
+                                                <th>{{ $item->nombreDepartamento }}</th>
                                                 <th>{{ $item->municipio }}</th>
                                              
                                                 <td>

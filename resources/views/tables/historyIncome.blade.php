@@ -107,7 +107,7 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>ID Cuenta</th>
+                        <th>Propietario de Cuenta</th>
                         <th>Fecha Hora Ingreso</th>
                         <th>Fecha Hora Salida</th>
                         <th>Dispositivo</th>
@@ -116,7 +116,7 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>ID Cuenta</th>
+                        <th>Propietario de Cuenta</th>
                         <th>Fecha Hora Ingreso</th>
                         <th>Fecha Hora Salida</th>
                         <th>Dispositivo</th>
@@ -126,7 +126,7 @@
                 <tbody>
                     @foreach ($datos as $item)
                     <tr>
-                        <th>{{ $item->idCuenta}}</th>
+                        <th>{{ $item->nombreCliente}}</th>
                         <th>{{ $item->fechaHoraIngreso }}</th>
                         <th>{{ $item->fechaHoraSalida }}</th>
                         <th>{{ $item->dispositivo }}</th>

@@ -98,14 +98,14 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th>ID Municipio</th>
+                        <th>Municipio</th>
                         <th>Distrito</th>
                         <th>Acciones</th>
                     </tr>
                 </thead>
                 <tfoot>
                     <tr>
-                        <th>ID Municipio</th>
+                        <th>Municipio</th>
                         <th>Distrito</th>
                         <th>Acciones</th>
                     </tr>
@@ -113,7 +113,7 @@
                 <tbody>
                     @foreach ($datos as $item)
                     <tr>
-                        <th>{{ $item->idMunicipio }}</th>
+                        <th>{{ $item->nombreMunicipio }}</th>
                         <th>{{ $item->distrito }}</th>
                         <td>
                             <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarModal{{ $item->idDistrito }}"><i class="fa-regular fa-pen-to-square"></i></a>

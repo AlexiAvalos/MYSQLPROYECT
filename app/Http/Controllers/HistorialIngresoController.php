@@ -16,7 +16,10 @@ class HistorialIngresoController extends Controller
      */
     public function index()
     {
-        $datos=DB::select(" select * from historialingreso");
+        $datos=DB::select("SELECT h.*, c.nombre AS nombreCliente
+        FROM historialingreso h
+        JOIN cuentas cu ON h.idCuenta = cu.idCuenta
+        JOIN cliente c ON cu.idCliente = c.idCliente");
         return view('tables.historyIncome ', ['datos' => $datos]);
 
     }

@@ -16,9 +16,12 @@ class CuentasController extends Controller
      */
     public function index()
     {
-        $datos=DB::select(" select * from cuentas");
-        return view('tables.accounts', ['datos' => $datos]);
+        $datos = DB::select("SELECT c.*, tc.TipoCuenta AS nombreTipoCuenta, cli.nombre AS nombreCliente
+        FROM cuentas c
+        JOIN tipoCuentas tc ON c.idTipoCuenta = tc.idTipoCuenta
+        JOIN cliente cli ON c.idCliente = cli.idCliente");
 
+        return view('tables.accounts', ['datos' => $datos]);
     }
 
     /**

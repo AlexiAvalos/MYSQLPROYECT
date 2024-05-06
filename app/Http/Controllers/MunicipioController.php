@@ -16,7 +16,9 @@ class MunicipioController extends Controller
      */
     public function index()
     {
-        $datos=DB::select(" select * from municipio");
+        $datos=DB::select("SELECT m.*, d.departamento AS nombreDepartamento
+        FROM municipio m
+        JOIN departamento d ON m.idDepartamento = m.idDepartamento");
         return view("tables.municipality")->with("datos", $datos);
     }
 

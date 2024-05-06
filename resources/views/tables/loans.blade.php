@@ -135,7 +135,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID Cliente</th>
+                                            <th>Cliente</th>
                                             <th>Fecha Prestamo</th>
                                             <th>Fecha Vencimiento</th>
                                             <th>Credito Prestado</th>
@@ -146,7 +146,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>ID Cliente</th>
+                                            <th>Cliente</th>
                                             <th>Fecha Prestamo</th>
                                             <th>Fecha Vencimiento</th>
                                             <th>Credito Prestado</th>
@@ -159,7 +159,7 @@
                                     <tbody>
                                         @foreach ($datos as $item)
                                             <tr>
-                                                <th>{{ $item->idCliente }}</th>
+                                                <th>{{ $item->nombreCliente }}</th>
                                                 <th>{{ $item->fechaPrestamo }}</th>
                                                 <th>{{ $item->fechaVencimiento }}</th>
                                                 <th>{{ $item->creditoPrestado }}</th>

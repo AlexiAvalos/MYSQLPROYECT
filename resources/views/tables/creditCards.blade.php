@@ -133,8 +133,8 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID Cliente</th>
-                                            <th>Id Ciclo Facturacion</th>
+                                            <th>Cliente</th>
+                                            <th>Fecha Corte</th>
                                             <th>Numero Tarjeta</th>
                                             <th>Limite Credito</th>
                                             <th>Saldo Actual</th>
@@ -144,8 +144,8 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>ID Cliente</th>
-                                            <th>Id Ciclo Facturacion</th>
+                                            <th>Cliente</th>
+                                            <th>Fecha Corte</th>
                                             <th>Numero Tarjeta</th>
                                             <th>Limite Credito</th>
                                             <th>Saldo Actual</th>
@@ -157,8 +157,8 @@
                                     <tbody>
                                         @foreach ($datos as $item)
                                             <tr>
-                                                <th>{{ $item->idCliente }}</th>
-                                                <th>{{ $item->idCicloFacturacion }}</th>
+                                                <th>{{ $item->nombreCliente }}</th>
+                                                <th>{{ $item->FechaFin }}</th>
                                                 <th>{{ $item->numeroTarjeta }}</th>
                                                 <th>{{ $item->limiteCredito }}</th>
                                                 <th>{{ $item->saldoActual }}</th>

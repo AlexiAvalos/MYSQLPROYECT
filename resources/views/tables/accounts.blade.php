@@ -125,8 +125,8 @@
                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                        <th>ID Tipo Cuenta</th>
-                                        <th>ID Cliente</th>
+                                        <th>Tipo Cuenta</th>
+                                        <th>Cliente</th>
                                         <th>Fecha de Apertura</th>
                                         <th>Crédito</th>
                                         <th>Estado</th>
@@ -134,8 +134,8 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                        <th>ID Tipo Cuenta</th>
-                                        <th>ID Cliente</th>
+                                        <th>Tipo Cuenta</th>
+                                        <th>Cliente</th>
                                         <th>Fecha de Apertura</th>
                                         <th>Crédito</th>
                                         <th>Estado</th>
@@ -145,8 +145,8 @@
                                     <tbody>
                                         @foreach ($datos as $item)
                                             <tr>
-                                            <th>{{ $item->idTipoCuenta }}</th>
-                                            <th>{{ $item->idCliente }}</th>
+                                            <th>{{ $item->nombreTipoCuenta }}</th>
+                                            <th>{{ $item->nombreCliente }}</th>
                                             <th>{{ $item->fechaApertura }}</th>
                                             <th>{{ $item->credito }}</th>
                                             <th>

@@ -154,9 +154,9 @@
                                     <tbody>
                                         @foreach ($datos as $item)
                                             <tr>
-                                            <th>{{ $item->idCuentaEmisor }}</th>
-                                            <th>{{ $item->idCuentaDestino }}</th>
-                                            <th>{{ $item->idTipoTransaccion }}</th>
+                                            <th>{{ $item->cuentaEmisor }}</th>
+                                            <th>{{ $item->cuentaDestino }}</th>
+                                            <th>{{ $item->tipoTransaccion }}</th>
                                             <th>{{ $item->fechaTransaccion }}</th>
                                             <th>{{ $item->descripcion }}</th>
                                             <th>{{ $item->monto }}</th>

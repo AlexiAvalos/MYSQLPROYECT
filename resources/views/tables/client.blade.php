@@ -150,8 +150,8 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                        <th>ID Distrito</th>
-                                        <th>ID Estado Civil</th>
+                                        <th>Distrito</th>
+                                        <th>Estado Civil</th>
                                         <th>Nombre</th>
                                         <th>Apellido</th>
                                         <th>DUI</th>
@@ -165,8 +165,8 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                        <th>ID Distrito</th>
-                                        <th>ID Estado Civil</th>
+                                        <th>Distrito</th>
+                                        <th>Estado Civil</th>
                                         <th>Nombre</th>
                                         <th>Apellido</th>
                                         <th>DUI</th>
@@ -182,8 +182,8 @@
                                     <tbody>
                                         @foreach ($datos as $item)
                                             <tr>
-                                            <td>{{ $item->idDistrito }}</td>
-                                            <td>{{ $item->idEstadoCivil }}</td>
+                                            <td>{{ $item->Nombre_Distrito }}</td>
+                                            <td>{{ $item->Nombre_EstadoCivil }}</td>
                                             <td>{{ $item->nombre }}</td>
                                             <td>{{ $item->apellido }}</td>
                                             <td>{{ $item->dui }}</td>

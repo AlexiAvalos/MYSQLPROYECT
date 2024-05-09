@@ -10,7 +10,13 @@ class TransaccionController extends Controller
 {
     public function index()
     {
-        $datos = DB::select("SELECT * FROM transacciones");
+        $datos = DB::select("SELECT t.*, cliEmisor.nombre AS cuentaEmisor, cliDestino.nombre AS cuentaDestino, tt.nombre AS tipoTransaccion
+        FROM transacciones t
+        JOIN cuentas cEmisor ON t.idCuentaEmisor = cEmisor.idCuenta
+        JOIN cuentas cDestino ON t.idCuentaDestino = cDestino.idCuenta
+        JOIN cliente cliEmisor ON cEmisor.idCliente = cliEmisor.idCliente
+        JOIN cliente cliDestino ON cDestino.idCliente = cliDestino.idCliente
+        JOIN tipotransacciones tt ON t.idTipoTransaccion = tt.idTipoTransaccion");
         return view("tables.Transactions")->with("datos", $datos);
     }
 

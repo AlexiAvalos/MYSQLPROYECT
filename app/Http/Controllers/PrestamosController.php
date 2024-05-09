@@ -10,7 +10,9 @@ class PrestamosController extends Controller
 {
     public function index()
     {
-        $datos = DB::select("SELECT * FROM prestamos");
+        $datos = DB::select("SELECT pr.*, c.nombre AS nombreCliente
+        FROM prestamos pr
+        JOIN cliente c ON pr.idCliente = c.idCliente");
         return view("tables.loans")->with("datos", $datos);
     }
 

@@ -10,7 +10,11 @@ class PagosController extends Controller
 {
     public function index()
     {
-        $datos = DB::select("SELECT * FROM pagos");
+        $datos = DB::select("SELECT p.*, c.nombre AS nombreCliente, tp.nombre AS nombreTipoPago
+        FROM pagos p
+        JOIN cuentas cu ON p.idCuenta = cu.idCuenta
+        JOIN cliente c ON cu.idCliente = c.idCliente
+        JOIN tipopagos tp ON p.idTipoPago = tp.idTipoPago");
         return view("tables.payments")->with("datos", $datos);
     }
 

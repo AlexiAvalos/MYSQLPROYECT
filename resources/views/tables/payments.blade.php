@@ -128,7 +128,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID Cuenta</th>
+                                            <th>Propietario de Cuenta</th>
                                             <th>ID Tipo Pago</th>
                                             <th>Monto Pago</th>
                                             <th>Fecha Pago</th>
@@ -138,7 +138,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>ID Cuenta</th>
+                                            <th>Propietario de Cuenta</th>
                                             <th>ID Tipo Pago</th>
                                             <th>Monto Pago</th>
                                             <th>Fecha Pago</th>
@@ -150,8 +150,8 @@
                                     <tbody>
                                         @foreach ($datos as $item)
                                             <tr>
-                                                <th>{{ $item->idCuenta }}</th>
-                                                <th>{{ $item->idTipoPago }}</th>
+                                                <th>{{ $item->nombreCliente }}</th>
+                                                <th>{{ $item->nombreTipoPago }}</th>
                                                 <th>{{ $item->montoPago }}</th>
                                                 <th>{{ $item->fechaPago }}</th>
                                                 <th>{{ $item->descripcion }}</th>
@@ -167,8 +167,9 @@
                                                     <a href="" class="btn btn-warning btn-sm" data-toggle="modal"
                                                         data-target="#editarModal{{$item->idPago}}"><i
                                                             class="fa-regular fa-pen-to-square"></i></a>
-                                                    <a href="{{route("delete.payments", $item->idPago)}}" onclick="return res()" class="btn btn-danger btn-sm"><i
-                                                            class="fa-regular fa-trash-can"></i></a>
+                                                    <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminarModal{{$item->idPago}}">
+                                                     <i class="fa-regular fa-trash-can"></i></a>
+                                                    
                                                 </td>
 
                                                 <div class="modal fade" id="editarModal{{$item->idPago}}" tabindex="-1" role="dialog"
@@ -222,6 +223,25 @@
                                                                 </form>
                                                             </div>
 
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="modal fade" id="eliminarModal{{$item->idPago}}" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Confirmar Eliminación</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ¿Estás seguro de que quieres eliminar este pago?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                            <a href="{{route("delete.payments", $item->idPago)}}" class="btn btn-danger">Eliminar</a>
                                                         </div>
                                                     </div>
                                                 </div>

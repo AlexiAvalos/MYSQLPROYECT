@@ -110,36 +110,61 @@
                     <tr>
                         <th>{{ $item->estadoCivil }}</th>
                         <td>
-                            <a href="" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarModal{{ $item->idEstadoCivil }}"><i class="fa-regular fa-pen-to-square"></i></a>
-                            <a href="{{ route("delete.maritalStatus", $item->idEstadoCivil) }}" onclick="return res()" class="btn btn-danger btn-sm"><i class="fa-regular fa-trash-can"></i></a>
+                            <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarModal{{$item->idEstadoCivil}}"><i class="fa-regular fa-pen-to-square"></i></a>
+                            <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminarModal{{$item->idEstadoCivil}}"><i class="fa-regular fa-trash-can"></i></a>
                         </td>
                     </tr>
-                    <div class="modal fade" id="editarModal{{ $item->idEstadoCivil }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Editar Estado Civil</h5>
-                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">×</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="{{ route("update.maritalStatus", $item->idEstadoCivil) }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="idEstadoCivil" id="idEstadoCivil" value="{{ $item->idEstadoCivil }}">
-                                        <div class="mb-3">
-                                            <label for="estadoCivil" class="form-label">Estado Civil</label>
-                                            <input type="text" class="form-control rounded" id="estadoCivil" name="estadoCivil" value="{{ $item->estadoCivil }}">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                                            <button class="btn btn-primary" type="submit">Guardar cambios</button>
-                                        </div>
+                    @endforeach
+                </tbody>
+
+                @foreach ($datos as $item)
+                <div class="modal fade" id="editarModal{{$item->idEstadoCivil}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Editar Estado Civil</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="{{ route("update.maritalStatus", $item->idEstadoCivil) }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="idEstadoCivil" id="idEstadoCivil" value="{{ $item->idEstadoCivil }}">
+                                    <div class="mb-3">
+                                        <label for="estadoCivil" class="form-label">Estado Civil</label>
+                                        <input type="text" class="form-control rounded" id="estadoCivil" name="estadoCivil" value="{{ $item->estadoCivil }}">
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                        <button class="btn btn-primary" type="submit">Guardar cambios</button>
+                                    </div>
                                 </form>
                             </div>
                         </div>
                     </div>
-                    @endforeach
+                </div>
+
+                <div class="modal fade" id="eliminarModal{{$item->idEstadoCivil}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Confirmar Eliminación</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                ¿Estás seguro de que quieres eliminar este estado civil?
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                <a href="{{route("delete.maritalStatus", $item->idEstadoCivil)}}" class="btn btn-danger">Eliminar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
                 </tbody>
             </table>
         </div>

@@ -121,55 +121,70 @@
                                     </tfoot>
                                     <tbody>
                                         @foreach ($datos as $item)
-                                            <tr>
-                                                <th>{{ $item->nombre }}</th>
-                                                <th>{{ $item->descripcion }}</th>
-                                                
-                                               
-                                                <td>
-                                                    <a href="" class="btn btn-warning btn-sm" data-toggle="modal"
-                                                        data-target="#editarModal{{$item->idTipoPago}}"><i
-                                                            class="fa-regular fa-pen-to-square"></i></a>
-                                                    <a href="{{route("delete.typePayments", $item->idTipoPago)}}" onclick="return res()" class="btn btn-danger btn-sm"><i
-                                                            class="fa-regular fa-trash-can"></i></a>
-                                                </td>
-
-                                                <div class="modal fade" id="editarModal{{$item->idTipoPago}}" tabindex="-1" role="dialog"
-                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Editar
-                                                                    Tipo Pago</h5>
-                                                                <button class="close" type="button"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">×</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form action="{{ route("update.typePayments", $item->idTipoPago) }}" method="POST">
-                                                                    @csrf
-                                                                    <input type="hidden" name="idTipoPago" id="idTipoPago" value="{{ $item->idTipoPago }}">
-                                                                    <div class="mb-3">
-                                                                        <label for="nombre" class="form-label">Nombre</label>
-                                                                        <input type="text" class="form-control rounded" id="nombre" name="nombre" value="{{ $item->nombre }}">
-                                                                    </div>
-                                                                    <div class="mb-3">
-                                                                        <label for="descripcion" class="form-label">Descripción</label>
-                                                                        <input type="text" class="form-control rounded" id="descripcion" name="descripcion" value="{{ $item->descripcion }}">
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                                                                        <button class="btn btn-primary" type="submit">Guardar cambios</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </tr>
+                                        <tr>
+                                            <th>{{ $item->nombre }}</th>
+                                            <th>{{ $item->descripcion }}</th>
+                                            <td>
+                                                <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarModal{{$item->idTipoPago}}"><i class="fa-regular fa-pen-to-square"></i></a>
+                                                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminarModal{{$item->idTipoPago}}"><i class="fa-regular fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
                                         @endforeach
+                                    </tbody>
+
+                                    @foreach ($datos as $item)
+                                    <div class="modal fade" id="editarModal{{$item->idTipoPago}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Editar Tipo de Pago</h5>
+                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route("update.typePayments", $item->idTipoPago) }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="idTipoPago" id="idTipoPago" value="{{ $item->idTipoPago }}">
+                                                        <div class="mb-3">
+                                                            <label for="nombre" class="form-label">Nombre</label>
+                                                            <input type="text" class="form-control rounded" id="nombre" name="nombre" value="{{ $item->nombre }}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="descripcion" class="form-label">Descripción</label>
+                                                            <input type="text" class="form-control rounded" id="descripcion" name="descripcion" value="{{ $item->descripcion }}">
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                            <button class="btn btn-primary" type="submit">Guardar cambios</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" id="eliminarModal{{$item->idTipoPago}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Confirmar Eliminación</h5>
+                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Estás seguro de que quieres eliminar este tipo de pago?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                    <a href="{{route("delete.typePayments", $item->idTipoPago)}}" class="btn btn-danger">Eliminar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+
                                     </tbody>
                                 </table>
                             </div>

@@ -10,7 +10,10 @@ class TarjetasCreditoController extends Controller
 {
     public function index()
     {
-        $datos = DB::select("SELECT * FROM tarjetascredito");
+        $datos = DB::select("SELECT tc.*, c.nombre AS nombreCliente, cf.fechaFin as FechaFin
+        FROM tarjetascredito tc
+        JOIN cliente c ON tc.idCliente = c.idCliente
+        JOIN ciclofacturacion cf ON tc.idCicloFacturacion = cf.idCicloFacturacion");
         return view("tables.creditCards")->with("datos", $datos);
     }
 

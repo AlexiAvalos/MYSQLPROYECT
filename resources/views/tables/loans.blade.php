@@ -135,7 +135,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID Cliente</th>
+                                            <th>Cliente</th>
                                             <th>Fecha Prestamo</th>
                                             <th>Fecha Vencimiento</th>
                                             <th>Credito Prestado</th>
@@ -146,7 +146,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <th>ID Cliente</th>
+                                            <th>Cliente</th>
                                             <th>Fecha Prestamo</th>
                                             <th>Fecha Vencimiento</th>
                                             <th>Credito Prestado</th>
@@ -158,88 +158,104 @@
                                     </tfoot>
                                     <tbody>
                                         @foreach ($datos as $item)
-                                            <tr>
-                                                <th>{{ $item->idCliente }}</th>
-                                                <th>{{ $item->fechaPrestamo }}</th>
-                                                <th>{{ $item->fechaVencimiento }}</th>
-                                                <th>{{ $item->creditoPrestado }}</th>
-                                                <th>{{ $item->creditoRecaudado }}</th>
-                                                <th>{{ $item->intereses }}</th>
-                                                <th>
-                                                    @if ($item->estado == 1)
-                                                        Pendiente
-                                                    @else
-                                                        Cancelado
-                                                    @endif
-                                                </th>
-                                               
-                                                <td>
-                                                    <a href="" class="btn btn-warning btn-sm" data-toggle="modal"
-                                                        data-target="#editarModal{{$item->idPrestamo}}"><i
-                                                            class="fa-regular fa-pen-to-square"></i></a>
-                                                    <a href="{{route("delete.loans", $item->idPrestamo)}}" onclick="return res()" class="btn btn-danger btn-sm"><i
-                                                            class="fa-regular fa-trash-can"></i></a>
-                                                </td>
-
-                                                <div class="modal fade" id="editarModal{{$item->idPrestamo}}" tabindex="-1" role="dialog"
-                                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabel">Editar
-                                                                    Pagos</h5>
-                                                                <button class="close" type="button"
-                                                                    data-dismiss="modal" aria-label="Close">
-                                                                    <span aria-hidden="true">×</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <form action="{{ route("update.loans", $item->idPrestamo) }}" method="POST">
-                                                                    @csrf
-                                                                    <input type="hidden" name="idPrestamo" id="idPrestamo" value="{{ $item->idPrestamo }}">
-                                                                    <div class="mb-3">
-                                                                        <label for="idCliente" class="form-label">ID Cliente</label>
-                                                                        <input type="text" class="form-control rounded" id="idCliente" name="idCliente" value="{{ $item->idCliente }}">
-                                                                    </div>
-                                                                    <div class="mb-3">
-                                                                        <label for="fechaPrestamo" class="form-label">Fecha de Préstamo</label>
-                                                                        <input type="text" class="form-control rounded" id="fechaPrestamo" name="fechaPrestamo" value="{{ $item->fechaPrestamo }}">
-                                                                    </div>
-                                                                    <div class="mb-3">
-                                                                        <label for="fechaVencimiento" class="form-label">Fecha de Vencimiento</label>
-                                                                        <input type="text" class="form-control rounded" id="fechaVencimiento" name="fechaVencimiento" value="{{ $item->fechaVencimiento }}">
-                                                                    </div>
-                                                                    <div class="mb-3">
-                                                                        <label for="creditoPrestado" class="form-label">Crédito Prestado</label>
-                                                                        <input type="text" class="form-control rounded" id="creditoPrestado" name="creditoPrestado" value="{{ $item->creditoPrestado }}">
-                                                                    </div>
-                                                                    <div class="mb-3">
-                                                                        <label for="creditoRecaudado" class="form-label">Crédito Recaudado</label>
-                                                                        <input type="text" class="form-control rounded" id="creditoRecaudado" name="creditoRecaudado" value="{{ $item->creditoRecaudado }}">
-                                                                    </div>
-                                                                    <div class="mb-3">
-                                                                        <label for="intereses" class="form-label">Intereses</label>
-                                                                        <input type="text" class="form-control rounded" id="intereses" name="intereses" value="{{ $item->intereses }}">
-                                                                    </div>
-                                                                    <div class="mb-3">
-                                                                        <label for="estado" class="form-label">Estado</label>
-                                                                        <select class="form-control" id="estadoPago" name="estadoPago">
-                                                                            <option value="1" {{ $item->estado == 1 ? 'selected' : '' }}>Pendiente</option>
-                                                                            <option value="0" {{ $item->estado == 0 ? 'selected' : '' }}>Cancelado</option>
-                                                                        </select>
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                                                                        <button class="btn btn-primary" type="submit">Guardar cambios</button>
-                                                                    </div>
-                                                                </form>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </tr>
+                                        <tr>
+                                            <th>{{ $item->nombreCliente }}</th>
+                                            <th>{{ $item->fechaPrestamo }}</th>
+                                            <th>{{ $item->fechaVencimiento }}</th>
+                                            <th>{{ $item->creditoPrestado }}</th>
+                                            <th>{{ $item->creditoRecaudado }}</th>
+                                            <th>{{ $item->intereses }}</th>
+                                            <th>
+                                                @if ($item->estado == 1)
+                                                    Pendiente
+                                                @else
+                                                    Cancelado
+                                                @endif
+                                            </th>
+                                            <td>
+                                                <a href="#" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editarModal{{$item->idPrestamo}}"><i class="fa-regular fa-pen-to-square"></i></a>
+                                                <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminarModal{{$item->idPrestamo}}"><i class="fa-regular fa-trash-can"></i></a>
+                                            </td>
+                                        </tr>
                                         @endforeach
+                                    </tbody>
+
+                                    @foreach ($datos as $item)
+                                    <div class="modal fade" id="editarModal{{$item->idPrestamo}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Editar Pagos</h5>
+                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <form action="{{ route("update.loans", $item->idPrestamo) }}" method="POST">
+                                                        @csrf
+                                                        <input type="hidden" name="idPrestamo" id="idPrestamo" value="{{ $item->idPrestamo }}">
+                                                        <div class="mb-3">
+                                                            <label for="idCliente" class="form-label">ID Cliente</label>
+                                                            <input type="text" class="form-control rounded" id="idCliente" name="idCliente" value="{{ $item->idCliente }}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="fechaPrestamo" class="form-label">Fecha de Préstamo</label>
+                                                            <input type="text" class="form-control rounded" id="fechaPrestamo" name="fechaPrestamo" value="{{ $item->fechaPrestamo }}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="fechaVencimiento" class="form-label">Fecha de Vencimiento</label>
+                                                            <input type="text" class="form-control rounded" id="fechaVencimiento" name="fechaVencimiento" value="{{ $item->fechaVencimiento }}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="creditoPrestado" class="form-label">Crédito Prestado</label>
+                                                            <input type="text" class="form-control rounded" id="creditoPrestado" name="creditoPrestado" value="{{ $item->creditoPrestado }}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="creditoRecaudado" class="form-label">Crédito Recaudado</label>
+                                                            <input type="text" class="form-control rounded" id="creditoRecaudado" name="creditoRecaudado" value="{{ $item->creditoRecaudado }}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="intereses" class="form-label">Intereses</label>
+                                                            <input type="text" class="form-control rounded" id="intereses" name="intereses" value="{{ $item->intereses }}">
+                                                        </div>
+                                                        <div class="mb-3">
+                                                            <label for="estado" class="form-label">Estado</label>
+                                                            <select class="form-control" id="estadoPago" name="estadoPago">
+                                                                <option value="1" {{ $item->estado == 1 ? 'selected' : '' }}>Pendiente</option>
+                                                                <option value="0" {{ $item->estado == 0 ? 'selected' : '' }}>Cancelado</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                            <button class="btn btn-primary" type="submit">Guardar cambios</button>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal fade" id="eliminarModal{{$item->idPrestamo}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Confirmar Eliminación</h5>
+                                                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                        <span aria-hidden="true">×</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    ¿Estás seguro de que quieres eliminar este prestamo?
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                    <a href="{{route("delete.loans", $item->idPrestamo)}}" class="btn btn-danger">Eliminar</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    @endforeach
+
                                     </tbody>
                                 </table>
                             </div>

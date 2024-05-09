@@ -125,8 +125,8 @@
                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                        <th>ID Tipo Cuenta</th>
-                                        <th>ID Cliente</th>
+                                        <th>Tipo Cuenta</th>
+                                        <th>Cliente</th>
                                         <th>Fecha de Apertura</th>
                                         <th>Crédito</th>
                                         <th>Estado</th>
@@ -134,8 +134,8 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                        <th>ID Tipo Cuenta</th>
-                                        <th>ID Cliente</th>
+                                        <th>Tipo Cuenta</th>
+                                        <th>Cliente</th>
                                         <th>Fecha de Apertura</th>
                                         <th>Crédito</th>
                                         <th>Estado</th>
@@ -145,8 +145,8 @@
                                     <tbody>
                                         @foreach ($datos as $item)
                                             <tr>
-                                            <th>{{ $item->idTipoCuenta }}</th>
-                                            <th>{{ $item->idCliente }}</th>
+                                            <th>{{ $item->nombreTipoCuenta }}</th>
+                                            <th>{{ $item->nombreCliente }}</th>
                                             <th>{{ $item->fechaApertura }}</th>
                                             <th>{{ $item->credito }}</th>
                                             <th>
@@ -160,8 +160,8 @@
                                                     <a href="" class="btn btn-warning btn-sm" data-toggle="modal"
                                                         data-target="#editarModal{{$item->idCuenta}}"><i
                                                             class="fa-regular fa-pen-to-square"></i></a>
-                                                    <a href="{{route("delete.accounts", $item->idCuenta)}}" onclick="return res()" class="btn btn-danger btn-sm"><i
-                                                            class="fa-regular fa-trash-can"></i></a>
+                                                    <a href="#" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#eliminarModal{{$item->idCuenta}}">
+                                                    <i class="fa-regular fa-trash-can"></i></a>
                                                 </td>
 
                                                 <div class="modal fade" id="editarModal{{$item->idCuenta}}" tabindex="-1" role="dialog"
@@ -208,6 +208,26 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="modal fade" id="eliminarModal{{$item->idCuenta}}" tabindex="-1" role="dialog"
+                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Confirmar Eliminación</h5>
+                                                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            ¿Estás seguro de que quieres eliminar esta cuenta?
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                                                            <a href="{{route("delete.accounts", $item->idCuenta)}}" class="btn btn-danger">Eliminar</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </tr>
                                             </tr>
                                         @endforeach
                                     </tbody>

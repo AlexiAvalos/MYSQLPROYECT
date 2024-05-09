@@ -16,7 +16,9 @@ class DistritoController extends Controller
      */
     public function index()
     {
-        $datos=DB::select(" select * from distrito");
+        $datos = DB::select("SELECT d.*, m.municipio AS nombreMunicipio
+            FROM distrito d
+            JOIN municipio m ON d.idMunicipio = m.idMunicipio");
         return view('tables.district ', ['datos' => $datos]);
 
     }

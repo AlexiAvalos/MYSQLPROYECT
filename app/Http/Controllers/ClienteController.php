@@ -16,7 +16,10 @@ class ClienteController extends Controller
      */
     public function index()
     {
-        $datos=DB::select(" select * from cliente");
+        $datos=DB::select(" SELECT c.*, d.distrito AS Nombre_Distrito, ec.estadoCivil AS Nombre_EstadoCivil
+        FROM cliente c
+        JOIN distrito d ON c.idDistrito = d.idDistrito
+        JOIN estadocivil ec ON c.idEstadoCivil = ec.idEstadoCivil");
         return view('tables.client', ['datos' => $datos]);
 
     }
@@ -42,6 +45,11 @@ class ClienteController extends Controller
             $request->ingresos,
             $request->direccion,
         ]);
+        $distrito = DB::select("SELECT nombre FROM distrito WHERE idDistrito = ?", [$request->idDistrito]);
+        $estadoCivil = DB::select("SELECT nombre FROM estado_civil WHERE idEstadoCivil = ?", [$request->idEstadoCivil]);
+
+        // Mensaje de respuesta con los nombres de distrito y estado civil
+        $response = "Cliente creado correctamente. Distrito: " . $distrito[0]->nombre . ", Estado Civil: " . $estadoCivil[0]->nombre;
     
     } catch (\Throwable $th) {
         $sql = 0;
@@ -111,6 +119,11 @@ class ClienteController extends Controller
             $request->direccion,
             $id
         ]);
+        $distrito = DB::select("SELECT nombre FROM distrito WHERE idDistrito = ?", [$request->idDistrito]);
+        $estadoCivil = DB::select("SELECT nombre FROM estado_civil WHERE idEstadoCivil = ?", [$request->idEstadoCivil]);
+
+        // Mensaje de respuesta con los nombres de distrito y estado civil
+        $response = "Cliente modificado correctamente. Distrito: " . $distrito[0]->nombre . ", Estado Civil: " . $estadoCivil[0]->nombre;
         if ($sql == 0) {
             $sql = 1;
         }

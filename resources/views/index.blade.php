@@ -47,81 +47,25 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+
                     </div>
 
                     <!-- Content Row -->
                     <div class="row">
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Connection Status</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Active</div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <!-- <i class="fas fa-ban fa-2x text-gray-300"></i> -->
-                                            <i class="fas fa-signal fa-2x text-green-300" style="color: #1cc88a;"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
+                    </div>
+                    <div>
+                        <h1 style="text-align: center;">Welcome</h1>
+                        <img style="display: block; margin: auto; width: 1000px; height: auto; border-radius: 10px;" src="https://th.bing.com/th/id/R.9ef7cfbe82a81668de5e0ee0718a4a16?rik=cK91e3bCRgB2vA&riu=http%3a%2f%2fmuniorotina.go.cr%2fimages%2f2020%2f03%2f14%2fsentisis-connector.gif&ehk=sXWADPg1qN%2f%2bJRXP03FKgoU8FsSeXwHAFKjetXEXVdI%3d&ri">
+
+
+
+
                     </div>
 
-                    <!-- Content Row -->
 
-                    <div class="row">
 
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Network Status</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="incomingTrafficChart" width="400" height="200"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">InnoDB Status</h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <div class="chart-pie pt-4 pb-2">
-                                        <canvas id="myPieChart"></canvas>
-                                    </div>
-                                    <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Disk reads
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Read reqs.
-                                        </span>
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> write reques
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
 
                 </div>
@@ -145,6 +89,28 @@
 
     </div>
     <!-- End of Page Wrapper -->
+
+    <script>
+        setInterval(function() {
+            $.ajax({
+                url: "{{ route('check-connection') }}",
+                type: 'GET',
+                success: function(response) {
+                    if (response.connected) {
+                        $('#connection-status').html('<i class="fas fa-signal fa-2x text-green-300" style="color: #1cc88a;"></i>');
+                        $('#connection-text').text('Online');
+                    } else {
+                        $('#connection-status').html('<i class="fas fa-ban fa-2x text-gray-300"></i>');
+                        $('#connection-text').text('Offline');
+                    }
+                },
+                error: function() {
+                    $('#connection-status').html('<i class="fas fa-ban fa-2x text-gray-300"></i>');
+                    $('#connection-text').text('Offline');
+                }
+            });
+        }, 2000);
+    </script>
 
     <!-- Scroll to Top Button-->
     <a class="scroll-to-top rounded" href="#page-top">

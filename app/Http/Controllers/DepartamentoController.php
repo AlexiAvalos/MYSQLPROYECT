@@ -32,11 +32,11 @@ class DepartamentoController extends Controller
             $sql = DB::insert("INSERT INTO departamento(departamento) VALUES (?)", [
                 $request->departamento,
             ]);
-        
+
         } catch (\Throwable $th) {
             $sql = 0;
         }
-        
+
         if ($sql == true) {
             return back()->with("Correcto", "Departamento registrado correctamente");
         } else {
@@ -91,11 +91,11 @@ class DepartamentoController extends Controller
             $request->departamento,
             $id
         ]);
-    
+
     } catch (\Throwable $th) {
         $sql = 0;
     }
-    
+
     if ($sql == true) {
         return back()->with("Correcto", "Departamento actualizado correctamente");
     } else {

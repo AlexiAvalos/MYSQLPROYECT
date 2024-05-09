@@ -47,4 +47,19 @@ class Handler extends ExceptionHandler
             //
         });
     }
+
+    public function render($request, Throwable $exception)
+    {
+        if ($this->isDatabaseConnectionError($exception)) {
+            return response()->view('offline', [], 500);
+        }
+
+        return parent::render($request, $exception);
+    }
+
+    protected function isDatabaseConnectionError(Throwable $exception)
+    {
+        return $exception instanceof \Illuminate\Database\QueryException
+            && ($exception->getCode() === "HY000" || $exception->getCode() === 2002);
+    }
 }

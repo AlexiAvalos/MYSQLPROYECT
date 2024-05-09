@@ -16,10 +16,11 @@ use App\Http\Controllers\TarjetasCreditoController;
 use App\Http\Controllers\TipoPagosController;
 use App\Http\Controllers\TipoTransController;
 use App\Http\Controllers\TransaccionController;
-
+use App\Http\Controllers\indexController;
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\NetworkTrafficController;
 
 
 /*
@@ -33,13 +34,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-    //hola
+
+
+Route::get('/', [indexController::class, "index"]);
+Route::get('/check-connection', [IndexController::class, 'checkConnection'])->name('check-connection');
+Route::get('/network-traffic', [NetworkTrafficController::class, 'getIncomingTraffic']);
+
+
+Route::get('/Offline', function () {
+    return view('Offline');
 });
 
-Route::get('/tables', function () {
-    return view('tables.tables');
+Route::get('/diagram', function () {
+    return view('diagrama');
 });
 
 
